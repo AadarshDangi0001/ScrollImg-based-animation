@@ -4,8 +4,8 @@ const canvas = document.querySelector("#frame");
 const context = canvas.getContext("2d");
 
 const frames = {
-  currentIndex: 0,
-  maxIndex: 516, // Total = 517 images (0 to 516)
+  currentIndex: 1,
+  maxIndex: 514, // frame_0001 to frame_0516 => total 516 images
 };
 
 const images = [];
@@ -15,19 +15,27 @@ function preloadImages() {
   for (let i = 1; i <= frames.maxIndex; i++) {
     const img = new Image();
     img.src = `./Prime-master/frame_${i.toString().padStart(4, "0")}.jpeg`;
+
     img.onload = () => {
       imagesLoaded++;
-      if (imagesLoaded === frames.maxIndex ) {
+      if (imagesLoaded === frames.maxIndex) {
         loadImage(frames.currentIndex);
         playScrollAnimation();
       }
     };
-    images.push(img);
+
+    img.onerror = () => {
+      console.error("Image failed to load:", img.src);
+    };
+
+    images[i] = img; // so images[1] = frame_0001
   }
 }
 
 function loadImage(index) {
   const img = images[index];
+  if (!img) return;
+
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
@@ -63,3 +71,4 @@ function playScrollAnimation() {
 }
 
 preloadImages();
+
