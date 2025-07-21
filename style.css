@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.main {
+  width: 100%;
+  
+  background-color: black;
+}
+
+.parent {
+  position: relative;
+  width: 100%;
+  height: 700vh;
+ 
+  top:0;
+  left: 0;
+}
+.sticky-container{
+    position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+ 
+}
+canvas {
+
+ width: 100%;
+   height: 100vh;
+}
+
+
+
+
+
+
+
